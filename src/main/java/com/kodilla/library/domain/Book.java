@@ -3,13 +3,14 @@ package com.kodilla.library.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "BOOKS")
+@NoArgsConstructor
+@Entity(name = "TITLES")
 public class Book {
 
     @Id
@@ -17,19 +18,20 @@ public class Book {
     @NonNull
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "STATUS")
-    private BookStatus status = BookStatus.AVAILABLE;
+    @Column(name = "TITLE")
+    private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "TITLE_ID")
-    private Title title;
+    @Column(name = "AUTHOR")
+    private String author;
+
+    @Column(name = "DATE_PUBLICATION")
+    private Date datePublication;
 
     @OneToMany(
-            targetEntity = Borrowing.class,
-            mappedBy = "book",
+            targetEntity = BookCopy.class,
+            mappedBy = "title",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Borrowing> borrowings;
+    private List<BookCopy> bookCopies;
 }

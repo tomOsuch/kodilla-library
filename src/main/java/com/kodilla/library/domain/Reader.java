@@ -25,7 +25,7 @@ public class Reader {
     private String lastName;
 
     @Column(name = "created_date")
-    private Date createdDate;
+    private Date createdDate = new Date();
 
     @OneToMany(
             targetEntity = Borrowing.class,
@@ -34,4 +34,15 @@ public class Reader {
             fetch = FetchType.LAZY
     )
     private List<Borrowing> borrowings;
+
+    public Reader(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Reader(@NonNull Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

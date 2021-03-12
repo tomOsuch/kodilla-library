@@ -25,7 +25,7 @@ public class Borrowing {
 
     @ManyToOne
     @JoinColumn(name = "BOOK_ID")
-    private Book book;
+    private BookCopy bookCopy;
 
     @ManyToOne
     @JoinColumn(name = "READER_ID")
