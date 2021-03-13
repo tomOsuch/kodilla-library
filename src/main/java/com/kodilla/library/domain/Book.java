@@ -34,4 +34,11 @@ public class Book {
             fetch = FetchType.LAZY
     )
     private List<BookCopy> bookCopies;
+
+    public Book(@NonNull Long id, String title, String author, Date datePublication) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.datePublication = datePublication;
+    }
 }

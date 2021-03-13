@@ -30,4 +30,10 @@ public class Borrowing {
     @ManyToOne
     @JoinColumn(name = "READER_ID")
     private Reader reader;
+
+    public Borrowing(@NonNull Long id, BookCopy bookCopy, Reader reader) {
+        this.id = id;
+        this.bookCopy = bookCopy;
+        this.reader = reader;
+    }
 }
