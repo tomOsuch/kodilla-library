@@ -1,6 +1,8 @@
 package com.kodilla.library.controller;
 
+import com.kodilla.library.domain.BookStatus;
 import com.kodilla.library.dto.BookCopyDto;
+import com.kodilla.library.exception.BookCopyNotFoundException;
 import com.kodilla.library.exception.BookNotFoundException;
 import com.kodilla.library.mapper.BookCopyMapper;
 import com.kodilla.library.services.BookCopyDbService;
@@ -27,18 +29,23 @@ public class BookCopyController {
         bookCopyDbService.saveBookCopy(id);
     }
 
+    @PutMapping("/setStatus")
+    public BookCopyDto setStatus(@RequestParam Long id, BookStatus status) throws BookCopyNotFoundException {
+        return  bookCopyMapper.mapToBookCopyDto(bookCopyDbService.setStatus(id, status));
+    }
+
     @GetMapping("/getAllBookCopy")
     public List<BookCopyDto> getAllBookCopy() {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBook());
     }
 
-    @GetMapping("/getBookCopy/{id}")
-    public BookCopyDto getBookCopy(@PathVariable Long id) {
+    @GetMapping("/getBookCopy")
+    public BookCopyDto getBookCopy(@RequestParam Long id) {
         return bookCopyMapper.mapToBookCopyDto(bookCopyDbService.getBookCopy(id));
     }
 
-    @DeleteMapping("/deleteBookCopy/{id}")
-    public void deleteBookCopy(@PathVariable Long id) throws BookNotFoundException {
+    @DeleteMapping("/deleteBookCopy")
+    public void deleteBookCopy(@RequestParam Long id) throws BookNotFoundException {
         bookCopyDbService.deleteBookCopy(id);
     }
 }

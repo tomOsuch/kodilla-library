@@ -1,13 +1,13 @@
 package com.kodilla.library.controller;
 
+import com.kodilla.library.domain.BookStatus;
 import com.kodilla.library.dto.BorrowingDto;
+import com.kodilla.library.exception.BookCopyNotFoundException;
+import com.kodilla.library.exception.BorrowingNotFoundException;
 import com.kodilla.library.mapper.BorrowingMapper;
 import com.kodilla.library.services.BorrowingDbService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +32,15 @@ public class BorrowingController {
     @GetMapping("/getBorrowings")
     public List<BorrowingDto> getAllBorrowing() {
         return borrowingMapper.mapToBorrowingDtoList(borrowingDbService.getAllBorrowing());
+    }
+
+    @PutMapping("/makeReturn")
+    public BorrowingDto makeReturn(@RequestParam Long id) throws BorrowingNotFoundException, BookCopyNotFoundException {
+        return borrowingMapper.mapToBorrowingDto(borrowingDbService.makeReturn(id));
+    }
+
+    @PutMapping("/finishBorrowingAs")
+    public BorrowingDto finishBorrowingAs(@RequestParam Long id, BookStatus status) throws BorrowingNotFoundException, BookCopyNotFoundException {
+        return borrowingMapper.mapToBorrowingDto(borrowingDbService.finishBorrowingAs(id, status));
     }
 }
