@@ -29,7 +29,7 @@ public class Book {
 
     @OneToMany(
             targetEntity = BookCopy.class,
-            mappedBy = "title",
+            mappedBy = "book",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )

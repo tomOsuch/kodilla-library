@@ -27,7 +27,7 @@ public class BookCopy {
 
     @OneToMany(
             targetEntity = Borrowing.class,
-            mappedBy = "book",
+            mappedBy = "bookCopy",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
