@@ -5,6 +5,43 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "BookCopy.getAllAvailableBookCopies",
+        query = "SELECT * FROM BOOK_COPIES " +
+                "WHERE STATUS = 'AVAILABLE'",
+        resultClass = BookCopy.class
+)
+
+@NamedNativeQuery(
+        name = "BookCopy.getAllBookCopiesOfBook",
+        query = "SELECT * FROM BOOK_COPIES " +
+                "WHERE BOOK_ID = :BOOK_ID",
+        resultClass = BookCopy.class
+)
+
+@NamedNativeQuery(
+        name = "BookCopy.getAvailableBookCopiesOfBook",
+        query = "SELECT * FROM BOOK_COPIES " +
+                "WHERE (STATUS = 'AVAILABLE' AND BOOK_ID = :BOOK_ID)",
+        resultClass = BookCopy.class
+)
+
+@NamedNativeQuery(
+        name = "BookCopy.getAllBookCopiesOfTitle",
+        query = "SELECT * FROM BOOK_COPIES BC " +
+                "JOIN BOOKS B ON B.ID = BC.BOOK_ID " +
+                "WHERE B.TITLE = :TITLE",
+        resultClass = BookCopy.class
+)
+
+@NamedNativeQuery(
+        name = "BookCopy.getAvailableBookCopiesOfTitle",
+        query = "SELECT * FROM BOOK_COPIES BC " +
+                "JOIN BOOKS B ON B.ID = BC.BOOK_ID " +
+                "WHERE (BC.STATUS = 'AVAILABLE' AND B.TITLE = :TITLE)",
+        resultClass = BookCopy.class
+)
+
 @Getter
 @Setter
 @NoArgsConstructor

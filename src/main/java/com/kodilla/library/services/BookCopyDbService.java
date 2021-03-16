@@ -23,12 +23,32 @@ public class BookCopyDbService {
         this.bookService = bookService;
     }
 
-    public List<BookCopy> getAllBook() {
+    public List<BookCopy> getAllBookCopy() {
         return bookCopyRepository.findAll();
     }
 
     public BookCopy getBookCopy(Long id) {
         return bookCopyRepository.findById(id).orElseThrow(() -> new BookCopyNotFoundException("BookCopy with pointed ID does not exist"));
+    }
+
+    public List<BookCopy> getAllAvailableBookCopies() {
+        return bookCopyRepository.getAllAvailableBookCopies();
+    }
+
+    public List<BookCopy> getAllBookCopiesOfBook(Long id) {
+        return bookCopyRepository.getAllBookCopiesOfBook(id);
+    }
+
+    public List<BookCopy> getAllBookCopiesOfTitle(String title) {
+        return bookCopyRepository.getAllBookCopiesOfTitle(title);
+    }
+
+    public List<BookCopy> getAvailableBookCopiesOfBook(Long id) {
+        return bookCopyRepository.getAvailableBookCopiesOfBook(id);
+    }
+
+    public List<BookCopy> getAvailableBookCopiesOfTitle(String title) {
+        return bookCopyRepository.getAvailableBookCopiesOfTitle(title);
     }
 
     public void saveBookCopy(Long id) throws BookNotFoundException {
@@ -50,4 +70,6 @@ public class BookCopyDbService {
         bookCopy.setStatus(status);
         return bookCopyRepository.save(bookCopy);
     }
+
+
 }

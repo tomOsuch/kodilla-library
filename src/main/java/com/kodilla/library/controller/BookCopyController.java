@@ -36,12 +36,37 @@ public class BookCopyController {
 
     @GetMapping("/getAllBookCopy")
     public List<BookCopyDto> getAllBookCopy() {
-        return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBook());
+        return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBookCopy());
     }
 
     @GetMapping("/getBookCopy")
     public BookCopyDto getBookCopy(@RequestParam Long id) {
         return bookCopyMapper.mapToBookCopyDto(bookCopyDbService.getBookCopy(id));
+    }
+
+    @GetMapping(value = "getAllAvailableBookCopies")
+    public List<BookCopyDto> getAllAvailableBookCopies() {
+        return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllAvailableBookCopies());
+    }
+
+    @GetMapping(value = "getAllBookCopiesOfBook")
+    public List<BookCopyDto> getAllBookCopiesOfBook(@RequestParam Long bookId) {
+        return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBookCopiesOfBook(bookId));
+    }
+
+    @GetMapping(value = "getAvailableBookCopiesOfBook")
+    public List<BookCopyDto> getAvailableBookCopiesOfBook(@RequestParam Long bookId) {
+        return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAvailableBookCopiesOfBook(bookId));
+    }
+
+    @GetMapping(value = "getAllBookCopiesOfTitle")
+    public List<BookCopyDto> getAllBookCopiesOfTitle(@RequestParam String title) {
+        return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBookCopiesOfTitle(title));
+    }
+
+    @GetMapping(value = "getAvailableBookCopiesOfTitle")
+    public List<BookCopyDto> getAvailableBookCopiesOfTitle(@RequestParam String title) {
+        return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAvailableBookCopiesOfTitle(title));
     }
 
     @DeleteMapping("/deleteBookCopy")

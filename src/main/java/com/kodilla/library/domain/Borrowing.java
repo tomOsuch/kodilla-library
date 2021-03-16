@@ -5,6 +5,34 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
+@NamedNativeQuery(
+        name = "Borrowing.getAllBorrowingsOfBookCopy",
+        query = "SELECT * FROM BORROWINGS " +
+                "WHERE BOOK_COPY_ID = :BOOK_COPY_ID",
+        resultClass = Borrowing.class
+)
+
+@NamedNativeQuery(
+        name = "Borrowing.getActiveBorrowingsOfBookCopy",
+        query = "SELECT * FROM BORROWINGS " +
+                "WHERE (RETURN_DATE IS NULL AND BOOK_COPY_ID = :BOOK_COPY_ID)",
+        resultClass = Borrowing.class
+)
+
+@NamedNativeQuery(
+        name = "Borrowing.getAllBorrowingsOfReader",
+        query = "SELECT * FROM BORROWINGS " +
+                "WHERE READER_ID = :READER_ID",
+        resultClass = Borrowing.class
+)
+
+@NamedNativeQuery(
+        name = "Borrowing.getActiveBorrowingsOfReader",
+        query = "SELECT * FROM BORROWINGS " +
+                "WHERE (RETURN_DATE IS NULL AND READER_ID = :READER_ID)",
+        resultClass = Borrowing.class
+)
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +52,7 @@ public class Borrowing {
     private Date returnDate;
 
     @ManyToOne
-    @JoinColumn(name = "BOOK_ID")
+    @JoinColumn(name = "BOOK_COPY_ID")
     private BookCopy bookCopy;
 
     @ManyToOne

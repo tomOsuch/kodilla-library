@@ -74,5 +74,19 @@ public class BorrowingDbService {
         return borrowingRepository.findAll();
     }
 
-    
+    public List<Borrowing> getAllBorrowingsOfBookCopy(Long bookCopyId) {
+        return borrowingRepository.getAllBorrowingsOfBookCopy(bookCopyId);
+    }
+
+    public List<Borrowing> getActiveBorrowingsOfBookCopy(Long bookCopyId) {
+        return borrowingRepository.getActiveBorrowingsOfBookCopy(bookCopyId);
+    }
+
+    public List<Borrowing> getAllBorrowingsOfReader(Long readerId) {
+        return borrowingRepository.getAllBorrowingsOfReader(readerId);
+    }
+
+    public List<Borrowing> getActiveBorrowingsOfReader(Long readerId) {
+        return borrowingRepository.getActiveBorrowingsOfReader(readerId);
+    }
 }

@@ -16,6 +16,7 @@ public class Book {
     @Id
     @GeneratedValue
     @NonNull
+    @Column(name = "BOOK_ID")
     private Long id;
 
     @Column(name = "TITLE")
