@@ -46,7 +46,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "BOOKS")
+@Entity(name = "BOOK_COPIES")
 public class BookCopy {
 
     @Id
@@ -59,7 +59,7 @@ public class BookCopy {
     private BookStatus status = BookStatus.AVAILABLE;
 
     @ManyToOne
-    @JoinColumn(name = "TITLE_ID")
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
     @OneToMany(
