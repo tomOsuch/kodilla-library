@@ -35,13 +35,19 @@ public class Reader {
     )
     private List<Borrowing> borrowings;
 
-    public Reader(String firstName, String lastName) {
+    public Reader(String firstName, String lastName, Date createdDate) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.createdDate = createdDate;
     }
 
     public Reader(@NonNull Long id, String firstName, String lastName) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Reader(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

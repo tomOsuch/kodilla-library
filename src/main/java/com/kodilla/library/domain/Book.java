@@ -10,13 +10,13 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "TITLES")
+@Entity(name = "BOOKS")
 public class Book {
 
     @Id
     @GeneratedValue
     @NonNull
-    @Column(name = "BOOK_ID")
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "TITLE")
@@ -38,6 +38,12 @@ public class Book {
 
     public Book(@NonNull Long id, String title, String author, Date datePublication) {
         this.id = id;
+        this.title = title;
+        this.author = author;
+        this.datePublication = datePublication;
+    }
+
+    public Book(String title, String author, Date datePublication) {
         this.title = title;
         this.author = author;
         this.datePublication = datePublication;

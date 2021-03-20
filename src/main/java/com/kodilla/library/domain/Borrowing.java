@@ -64,4 +64,10 @@ public class Borrowing {
         this.bookCopy = bookCopy;
         this.reader = reader;
     }
+
+
+    public Borrowing(BookCopy bookCopy, Reader reader) {
+        this.bookCopy = bookCopy;
+        this.reader = reader;
+    }
 }
