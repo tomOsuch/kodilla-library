@@ -2,6 +2,7 @@ package com.kodilla.library.services;
 
 import com.kodilla.library.domain.Book;
 import com.kodilla.library.domain.BookCopy;
+import com.kodilla.library.domain.BookStatus;
 import com.kodilla.library.exception.BookCopyNotFoundException;
 import com.kodilla.library.exception.BookNotFoundException;
 import com.kodilla.library.repository.BookCopyRepository;
@@ -42,5 +43,11 @@ public class BookCopyDbService {
         Book book = bookService.getBook(bookCopyToDelete.getBook().getId());
         book.getBookCopies().remove(bookCopyToDelete);
         bookService.saveBook(book);
+    }
+
+    public BookCopy setStatus(Long id, BookStatus status) throws BookCopyNotFoundException {
+        BookCopy bookCopy = getBookCopy(id);
+        bookCopy.setStatus(status);
+        return bookCopyRepository.save(bookCopy);
     }
 }
