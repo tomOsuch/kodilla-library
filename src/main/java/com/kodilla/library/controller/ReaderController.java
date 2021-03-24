@@ -42,7 +42,7 @@ public class ReaderController {
         readerService.saveReader(reader);
     }
 
-    @PutMapping("/updateReader")
+    @PutMapping("/updateReader") //dodanie ID
     public ReaderDto updateReader(@RequestBody ReaderDto readerDto) {
         Reader reader = readerMapper.mapToReader(readerDto);
         Reader saveReader = readerService.saveReader(reader);

@@ -42,33 +42,33 @@ public class BorrowingController {
         return borrowingMapper.mapToBorrowingDtoList(borrowingDbService.getAllBorrowing());
     }
 
-    @PutMapping("/makeReturn")
-    public BorrowingDto makeReturn(@RequestParam Long id) throws BorrowingNotFoundException, BookCopyNotFoundException {
+    @PutMapping("/makeReturn/{id}")
+    public BorrowingDto makeReturn(@PathVariable Long id) throws BorrowingNotFoundException, BookCopyNotFoundException {
         return borrowingMapper.mapToBorrowingDto(borrowingDbService.makeReturn(id));
     }
 
-    @PutMapping("/finishBorrowingAs")
-    public BorrowingDto finishBorrowingAs(@RequestParam Long id, BookStatus status) throws BorrowingNotFoundException, BookCopyNotFoundException {
+    @PutMapping("/finishBorrowingAs/{id}")
+    public BorrowingDto finishBorrowingAs(@PathVariable Long id, BookStatus status) throws BorrowingNotFoundException, BookCopyNotFoundException {
         return borrowingMapper.mapToBorrowingDto(borrowingDbService.finishBorrowingAs(id, status));
     }
 
-    @GetMapping(value = "getAllBorrowingsOfBookCopy")
-    public List<BorrowingDto> getAllBorrowingsOfBookCopy(@RequestParam Long bookCopyId){
+    @GetMapping(value = "getAllBorrowingsOfBookCopy/{bookCopyId}")
+    public List<BorrowingDto> getAllBorrowingsOfBookCopy(@PathVariable Long bookCopyId){
         return borrowingMapper.mapToBorrowingDtoList(borrowingDbService.getAllBorrowingsOfBookCopy(bookCopyId));
     }
 
-    @GetMapping(value = "getActiveBorrowingsOfBookCopy")
-    public List<BorrowingDto> getActiveBorrowingsOfBookCopy(@RequestParam Long bookCopyId){
+    @GetMapping(value = "getActiveBorrowingsOfBookCopy/{bookCopyId}")
+    public List<BorrowingDto> getActiveBorrowingsOfBookCopy(@PathVariable Long bookCopyId){
         return borrowingMapper.mapToBorrowingDtoList(borrowingDbService.getActiveBorrowingsOfBookCopy(bookCopyId));
     }
 
-    @GetMapping(value = "getAllBorrowingsOfReader")
-    public List<BorrowingDto> getAllBorrowingsOfReader(@RequestParam Long readerId){
+    @GetMapping(value = "getAllBorrowingsOfReader/{readerId}")
+    public List<BorrowingDto> getAllBorrowingsOfReader(@PathVariable Long readerId){
         return borrowingMapper.mapToBorrowingDtoList(borrowingDbService.getAllBorrowingsOfReader(readerId));
     }
 
-    @GetMapping(value = "getActiveBorrowingsOfReader")
-    public List<BorrowingDto> getActiveBorrowingsOfReader(@RequestParam Long readerId){
+    @GetMapping(value = "getActiveBorrowingsOfReader/{readerId}")
+    public List<BorrowingDto> getActiveBorrowingsOfReader(@PathVariable Long readerId){
         return borrowingMapper.mapToBorrowingDtoList(borrowingDbService.getActiveBorrowingsOfReader(readerId));
     }
 }

@@ -29,7 +29,7 @@ public class BookCopyController {
         bookCopyDbService.saveBookCopy(id);
     }
 
-    @PutMapping("/setStatus")
+    @PatchMapping("/setStatus") //PATCH
     public BookCopyDto setStatus(@RequestParam Long id, BookStatus status) throws BookCopyNotFoundException {
         return  bookCopyMapper.mapToBookCopyDto(bookCopyDbService.setStatus(id, status));
     }
@@ -39,8 +39,8 @@ public class BookCopyController {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBookCopy());
     }
 
-    @GetMapping("/getBookCopy")
-    public BookCopyDto getBookCopy(@RequestParam Long id) {
+    @GetMapping("/getBookCopy/{id}")
+    public BookCopyDto getBookCopy(@PathVariable Long id) {
         return bookCopyMapper.mapToBookCopyDto(bookCopyDbService.getBookCopy(id));
     }
 
@@ -49,28 +49,28 @@ public class BookCopyController {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllAvailableBookCopies());
     }
 
-    @GetMapping(value = "getAllBookCopiesOfBook")
-    public List<BookCopyDto> getAllBookCopiesOfBook(@RequestParam Long bookId) {
+    @GetMapping(value = "getAllBookCopiesOfBook/{bookId}")
+    public List<BookCopyDto> getAllBookCopiesOfBook(@PathVariable Long bookId) {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBookCopiesOfBook(bookId));
     }
 
-    @GetMapping(value = "getAvailableBookCopiesOfBook")
-    public List<BookCopyDto> getAvailableBookCopiesOfBook(@RequestParam Long bookId) {
+    @GetMapping(value = "getAvailableBookCopiesOfBook/{bookId}")
+    public List<BookCopyDto> getAvailableBookCopiesOfBook(@PathVariable Long bookId) {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAvailableBookCopiesOfBook(bookId));
     }
 
-    @GetMapping(value = "getAllBookCopiesOfTitle")
-    public List<BookCopyDto> getAllBookCopiesOfTitle(@RequestParam String title) {
+    @GetMapping(value = "getAllBookCopiesOfTitle?title={title}")
+    public List<BookCopyDto> getAllBookCopiesOfTitle(@PathVariable String title) {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBookCopiesOfTitle(title));
     }
 
-    @GetMapping(value = "getAvailableBookCopiesOfTitle")
-    public List<BookCopyDto> getAvailableBookCopiesOfTitle(@RequestParam String title) {
+    @GetMapping(value = "getAvailableBookCopiesOfTitle?title={title}")
+    public List<BookCopyDto> getAvailableBookCopiesOfTitle(@PathVariable String title) {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAvailableBookCopiesOfTitle(title));
     }
 
-    @DeleteMapping("/deleteBookCopy")
-    public void deleteBookCopy(@RequestParam Long id) throws BookNotFoundException {
+    @DeleteMapping("/deleteBookCopy/{id}")
+    public void deleteBookCopy(@PathVariable Long id) throws BookNotFoundException {
         bookCopyDbService.deleteBookCopy(id);
     }
 }
