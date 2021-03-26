@@ -3,11 +3,12 @@ package com.kodilla.library.mapper;
 import com.kodilla.library.domain.Book;
 import com.kodilla.library.dto.BookDto;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class BookMapper {
 
     public BookDto mapToBookDto(final Book book) {

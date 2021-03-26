@@ -6,11 +6,12 @@ import com.kodilla.library.dto.BookCopyDto;
 import com.kodilla.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class BookCopyMapper {
 
     @Autowired

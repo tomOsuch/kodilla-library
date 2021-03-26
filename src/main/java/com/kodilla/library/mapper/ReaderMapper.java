@@ -3,11 +3,12 @@ package com.kodilla.library.mapper;
 import com.kodilla.library.domain.Reader;
 import com.kodilla.library.dto.ReaderDto;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class ReaderMapper {
 
     public ReaderDto mapToReaderDto(final Reader reader) {
