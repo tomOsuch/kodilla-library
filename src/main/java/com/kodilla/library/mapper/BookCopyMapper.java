@@ -3,6 +3,7 @@ package com.kodilla.library.mapper;
 import com.kodilla.library.domain.Book;
 import com.kodilla.library.domain.BookCopy;
 import com.kodilla.library.dto.BookCopyDto;
+import com.kodilla.library.dto.BookCopyStatusDto;
 import com.kodilla.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,13 @@ public class BookCopyMapper {
         return new BookCopyDto(
                 bookCopy.getId(),
                 bookCopy.getBook().getId(),
+                bookCopy.getStatus()
+        );
+    }
+
+    public BookCopyStatusDto mapToBookCopyStatusDto(BookCopy bookCopy) {
+        return new BookCopyStatusDto(
+                bookCopy.getId(),
                 bookCopy.getStatus()
         );
     }
