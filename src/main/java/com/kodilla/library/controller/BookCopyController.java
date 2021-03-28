@@ -1,7 +1,7 @@
 package com.kodilla.library.controller;
 
-import com.kodilla.library.domain.BookStatus;
 import com.kodilla.library.dto.BookCopyDto;
+import com.kodilla.library.dto.BookCopyStatusDto;
 import com.kodilla.library.exception.BookCopyNotFoundException;
 import com.kodilla.library.exception.BookNotFoundException;
 import com.kodilla.library.mapper.BookCopyMapper;
@@ -29,9 +29,9 @@ public class BookCopyController {
         bookCopyDbService.saveBookCopy(id);
     }
 
-    @PatchMapping("/setStatus") //PATCH
-    public BookCopyDto setStatus(@RequestParam Long id, BookStatus status) throws BookCopyNotFoundException {
-        return  bookCopyMapper.mapToBookCopyDto(bookCopyDbService.setStatus(id, status));
+    @PatchMapping("/setStatus")
+    public BookCopyDto setStatus(@RequestBody BookCopyStatusDto bookCopyStatusDto) throws BookCopyNotFoundException {
+        return  bookCopyMapper.mapToBookCopyDto(bookCopyDbService.setStatus(bookCopyStatusDto.getId(), bookCopyStatusDto.getBookStatus()));
     }
 
     @GetMapping("/getAllBookCopy")
@@ -59,13 +59,13 @@ public class BookCopyController {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAvailableBookCopiesOfBook(bookId));
     }
 
-    @GetMapping(value = "getAllBookCopiesOfTitle?title={title}")
-    public List<BookCopyDto> getAllBookCopiesOfTitle(@PathVariable String title) {
+    @GetMapping(value = "getAllBookCopiesOfTitle")
+    public List<BookCopyDto> getAllBookCopiesOfTitle(@RequestParam String title) {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAllBookCopiesOfTitle(title));
     }
 
-    @GetMapping(value = "getAvailableBookCopiesOfTitle?title={title}")
-    public List<BookCopyDto> getAvailableBookCopiesOfTitle(@PathVariable String title) {
+    @GetMapping(value = "getAvailableBookCopiesOfTitle")
+    public List<BookCopyDto> getAvailableBookCopiesOfTitle(@RequestParam String title) {
         return bookCopyMapper.mapToBookCopyDtoList(bookCopyDbService.getAvailableBookCopiesOfTitle(title));
     }
 
